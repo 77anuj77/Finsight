@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html class="light scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Finsick — Your money, beautifully organized.</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "porcelain": "#fbfbfa",
+            "porcelain-subtle": "#f4f6f8",
+            "porcelain-card": "rgba(255, 255, 255, 0.82)",
+            "porcelain-elevated": "rgba(255, 255, 255, 0.94)",
+            "glass-border-light": "rgba(255, 255, 255, 0.9)",
+            "glass-border-subtle": "rgba(226, 232, 240, 0.7)",
+            "text-primary": "#0f172a",
+            "text-secondary": "#475569",
+            "text-muted": "#64748b",
+            "accent-orange": "#f97316",
+            "accent-orange-dark": "#ea580c",
+            "accent-yellow": "#eab308",
+            "accent-amber": "#f59e0b",
+            "accent-emerald": "#10b981",
+            "accent-emerald-dark": "#059669",
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          boxShadow: {
+            'clay-button-orange': '0 8px 20px -4px rgba(249, 115, 22, 0.35), inset 0 2px 2px 0 rgba(255, 255, 255, 0.6), inset 0 -2px 4px 0 rgba(194, 65, 12, 0.25)',
+            'clay-card-light': '0 24px 48px -12px rgba(15, 23, 42, 0.08), 0 4px 16px -2px rgba(15, 23, 42, 0.04), inset 0 2px 4px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(226, 232, 240, 0.4)',
+            'clay-pill-light': '0 4px 12px -2px rgba(15, 23, 42, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.9)',
+            'glass-float-light': '0 16px 32px -8px rgba(15, 23, 42, 0.1), 0 0 1px 1px rgba(255, 255, 255, 0.9)',
+            'soft-highlight': '0 0 40px -10px rgba(249, 115, 22, 0.15)',
+          },
+          animation: {
+            'float-slow': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 6s ease-in-out 3s infinite',
+            'pulse-subtle': 'pulseSubtle 4s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            pulseSubtle: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.8' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #fbfbfa;
+      color: #0f172a;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+    }
+    .clay-pill-surface {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.75) 100%);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(15, 23, 42, 0.05);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .clay-card-white {
+      background: linear-gradient(175deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.86) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07), 0 2px 10px -2px rgba(15, 23, 42, 0.03), inset 0 1px 2px rgba(255, 255, 255, 0.95), inset 0 -2px 5px rgba(226, 232, 240, 0.35);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fbfbfa;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(15, 23, 42, 0.15);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(15, 23, 42, 0.28);
+    }
+  </style>
+</head>
+<body class="relative min-h-screen overflow-x-hidden selection:bg-orange-100 selection:text-orange-900 font-sans bg-[#fbfbfa]">
+<!-- Ethereal Luminous Ambient Radial Background Glows -->
+<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[980px] h-[550px] bg-gradient-to-b from-orange-200/45 via-amber-100/35 to-transparent blur-[130px] rounded-full"></div>
+<div class="absolute top-[28%] -left-40 w-[540px] h-[540px] bg-emerald-200/35 blur-[140px] rounded-full"></div>
+<div class="absolute top-[52%] -right-40 w-[560px] h-[560px] bg-amber-200/30 blur-[140px] rounded-full"></div>
+<div class="absolute bottom-16 left-1/4 w-[620px] h-[440px] bg-orange-200/30 blur-[150px] rounded-full"></div>
+</div>
+<!-- FLOATING FROSTED GLASS NAVBAR -->
+<header class="fixed top-4 inset-x-0 z-50 px-4 md:px-6">
+<div class="max-w-5xl mx-auto h-14 rounded-2xl bg-white/80 backdrop-blur-xl border border-white shadow-clay-card-light flex items-center justify-between px-4 sm:px-6 transition-all duration-300 hover:border-white/90">
+<!-- Logo + Brand -->
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="relative w-7 h-7 flex items-center justify-center">
+<img alt="Finsick Logo" class="h-7 w-7 object-contain drop-shadow-[0_2px_8px_rgba(249,115,22,0.3)] transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdTmoPFSrKCmfO4xaT1vcILGOLRP9m01MD-PKfFxuwFnR9xYJz2RnP5RIJa6GEk_yZK8gHL9phtQhY5f-3gcpLr5jdH0r0TgBCl-YR8eDpKRYy4kjryNUGSW4XJtXwhYQ9GPa0u2C6APDnsahXSFF81n7bPd3rlDr-0-cpCSbF8QpVB48sGkc5o7AL26jnYJgnVr2XNMB49wNLlof9slypB10HG1ruTZArCg1wEKGKUS4JeWHCiHFmEq2wCiK1nYsKrt4"/>
+</div>
+<span class="font-bold text-base tracking-tight text-slate-900 group-hover:text-orange-600 transition-colors">Finsick</span>
+</a>
+<!-- Center Navigation -->
+<nav class="hidden md:flex items-center gap-1 bg-slate-100/70 border border-slate-200/60 p-1 rounded-xl">
+<a class="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3.5 py-1.5 rounded-lg transition-colors hover:bg-white shadow-xs" href="#features">Features</a>
+<a class="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3.5 py-1.5 rounded-lg transition-colors hover:bg-white shadow-xs" href="#dashboard-preview">Analytics</a>
+<a class="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3.5 py-1.5 rounded-lg transition-colors hover:bg-white shadow-xs" href="#ai-insights">AI Insights</a>
+<a class="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3.5 py-1.5 rounded-lg transition-colors hover:bg-white shadow-xs" href="#how-it-works">How it Works</a>
+<a class="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3.5 py-1.5 rounded-lg transition-colors hover:bg-white shadow-xs" href="#security">Security</a>
+</nav>
+<!-- Right Actions -->
+<div class="flex items-center gap-3">
+<a class="text-xs font-semibold text-slate-600 hover:text-slate-900 px-3 py-1.5 transition-colors hidden sm:block" href="#login">Log in</a>
+<a class="text-xs font-bold text-white px-4 py-2 rounded-xl bg-gradient-to-r from-orange-500 via-orange-600 to-amber-500 hover:brightness-105 transition-all duration-200 shadow-clay-button-orange flex items-center gap-1.5 active:scale-95" href="#get-started">
+<span>Get Started</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT CONTAINER -->
+<main class="relative z-10 pt-28 sm:pt-36 flex flex-col items-center">
+<!-- HERO SECTION -->
+<section class="w-full max-w-6xl px-4 sm:px-6 pt-4 pb-16 flex flex-col items-center text-center">
+<!-- Eyebrow Badge -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full clay-pill-surface text-xs font-semibold text-slate-700 mb-6 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] animate-pulse"></span>
+<span class="tracking-wide uppercase text-[11px] text-slate-700 font-mono">Smarter finances, simplified</span>
+</div>
+<!-- Main Headline -->
+<h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 max-w-3xl leading-[1.12] mb-5">
+        Your money, <br class="hidden sm:inline"/>
+<span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-amber-500 to-emerald-600">beautifully organized.</span>
+</h1>
+<!-- Supporting Subtext -->
+<p class="text-base sm:text-lg text-slate-600 max-w-2xl leading-relaxed mb-8 font-normal">
+        Finsick helps you track spending, manage budgets, understand your finances, and make smarter decisions from one simple workspace.
+      </p>
+<!-- Hero CTAs -->
+<div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-16">
+<a class="h-12 px-7 rounded-xl bg-gradient-to-r from-orange-500 via-orange-600 to-amber-500 hover:brightness-105 text-white font-bold text-sm transition-all duration-200 shadow-clay-button-orange flex items-center gap-2 active:scale-95" href="#get-started">
+<span>Get Started Free</span>
+<span class="material-symbols-outlined text-[16px]">east</span>
+</a>
+<a class="h-12 px-6 rounded-xl bg-white/80 hover:bg-white text-slate-700 border border-slate-200 font-semibold text-sm transition-all duration-200 shadow-sm flex items-center gap-2 hover:border-slate-300 active:scale-95" href="#dashboard-preview">
+<span class="material-symbols-outlined text-[18px] text-amber-500">play_circle</span>
+<span>View Demo</span>
+</a>
+</div>
+<!-- HERO VISUAL: LUMINOUS CLAY DASHBOARD PREVIEW -->
+<div class="relative w-full max-w-4xl mt-2" id="dashboard-preview">
+<!-- Floating Glass Interactive Pill Widgets -->
+<!-- Widget 1: Top Right Income Pulse -->
+<div class="absolute -top-4 -right-2 sm:-right-4 z-20 animate-float-slow hidden xs:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/95 backdrop-blur-xl border border-emerald-200 shadow-glass-float-light">
+<div class="w-6 h-6 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600">
+<span class="material-symbols-outlined text-[15px]">trending_up</span>
+</div>
+<div class="text-left">
+<div class="text-[10px] uppercase font-mono tracking-wider text-emerald-700 font-bold">+₹65,000 Income</div>
+<div class="text-[11px] text-slate-500 font-medium">Direct Salary Credited</div>
+</div>
+</div>
+<!-- Widget 2: Bottom Left Expenses -->
+<div class="absolute -bottom-4 -left-2 sm:-left-4 z-20 animate-float-delayed hidden xs:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/95 backdrop-blur-xl border border-orange-200 shadow-glass-float-light">
+<div class="w-6 h-6 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600">
+<span class="material-symbols-outlined text-[15px]">trending_down</span>
+</div>
+<div class="text-left">
+<div class="text-[10px] uppercase font-mono tracking-wider text-orange-700 font-bold">₹38,420 Expenses</div>
+<div class="text-[11px] text-slate-500 font-medium">14% below monthly mean</div>
+</div>
+</div>
+<!-- Widget 3: Bottom Right Savings Metric -->
+<div class="absolute -bottom-4 right-6 sm:right-12 z-20 animate-float-slow hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-xl border border-amber-200 shadow-glass-float-light">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+<span class="text-xs font-mono font-bold text-amber-700">↑ 12.4% Savings Rate</span>
+</div>
+<!-- Master Floating Dashboard Card -->
+<div class="relative rounded-3xl clay-card-white p-5 sm:p-8 text-left">
+<!-- Top Window Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200/70">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Total Balance</span>
+<span class="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-mono font-bold">+12.4% this mo</span>
+</div>
+<div class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 font-mono">
+                ₹14,82,450<span class="text-slate-400 text-xl font-normal">.00</span>
+</div>
+</div>
+<!-- Quick Filter / Period Selector -->
+<div class="flex items-center gap-1.5 bg-slate-100/90 p-1 rounded-xl border border-slate-200 self-start sm:self-auto">
+<button class="px-3 py-1 text-xs rounded-lg font-bold text-slate-900 bg-white shadow-xs">This Month</button>
+<button class="px-3 py-1 text-xs rounded-lg font-semibold text-slate-500 hover:text-slate-900 transition-colors">Quarter</button>
+<button class="px-3 py-1 text-xs rounded-lg font-semibold text-slate-500 hover:text-slate-900 transition-colors">Year</button>
+</div>
+</div>
+<!-- Clean 3-Metric Sub-Row -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 my-6">
+<div class="p-3.5 rounded-2xl bg-white/80 border border-slate-200/80 shadow-xs">
+<span class="text-xs text-slate-500 font-medium block mb-1">Monthly Income</span>
+<div class="text-lg font-bold text-slate-900 font-mono">₹1,45,000</div>
+<span class="text-[11px] text-emerald-600 font-mono font-medium">3 automated streams</span>
+</div>
+<div class="p-3.5 rounded-2xl bg-white/80 border border-slate-200/80 shadow-xs">
+<span class="text-xs text-slate-500 font-medium block mb-1">Monthly Expenses</span>
+<div class="text-lg font-bold text-slate-900 font-mono">₹68,420</div>
+<span class="text-[11px] text-orange-600 font-mono font-medium">Well within budget</span>
+</div>
+<div class="p-3.5 rounded-2xl bg-white/80 border border-slate-200/80 shadow-xs">
+<span class="text-xs text-slate-500 font-medium block mb-1">Net Savings</span>
+<div class="text-lg font-bold text-amber-600 font-mono">₹76,580</div>
+<span class="text-[11px] text-slate-600 font-mono font-medium">52.8% savings rate</span>
+</div>
+</div>
+<!-- Minimal Curved Cash Flow Waveform SVG in Yellow-Green Gradient -->
+<div class="mb-6 p-4 rounded-2xl bg-slate-50/80 border border-slate-200/70">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-mono text-slate-600 font-bold uppercase tracking-wider">30-Day Liquidity Waveform</span>
+<span class="text-xs text-slate-500 font-mono">Oct 01 – Today</span>
+</div>
+<div class="w-full h-24 sm:h-28 relative">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 500 100">
+<defs>
+<lineargradient id="waveGlowLight" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.25"></stop>
+<stop offset="50%" stop-color="#eab308" stop-opacity="0.15"></stop>
+<stop offset="100%" stop-color="#f97316" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient id="waveStrokeLight" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" stop-color="#10b981"></stop>
+<stop offset="60%" stop-color="#eab308"></stop>
+<stop offset="100%" stop-color="#f97316"></stop>
+</lineargradient>
+</defs>
+<!-- Filled spline area -->
+<path d="M0,80 C80,75 140,35 220,50 C300,65 370,18 440,30 C470,35 485,25 500,20 L500,100 L0,100 Z" fill="url(#waveGlowLight)"></path>
+<!-- Smooth curved stroke line -->
+<path d="M0,80 C80,75 140,35 220,50 C300,65 370,18 440,30 C470,35 485,25 500,20" fill="none" stroke="url(#waveStrokeLight)" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Target Pulse Point -->
+<circle cx="440" cy="30" fill="#f97316" r="4"></circle>
+<circle cx="440" cy="30" fill="#f97316" fill-opacity="0.3" r="9"></circle>
+</svg>
+</div>
+</div>
+<!-- Recent Transactions List (Curated & Clean) -->
+<div>
+<div class="flex items-center justify-between mb-3 px-1">
+<span class="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold">Recent Transactions</span>
+<a class="text-xs font-bold text-orange-600 hover:text-orange-700 transition-colors" href="#">View all</a>
+</div>
+<div class="space-y-2">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-white/70 hover:bg-white transition-colors border border-slate-200/80 shadow-xs">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">laptop_mac</span>
+</div>
+<div>
+<div class="text-xs sm:text-sm font-semibold text-slate-900">Apple Store Mumbai</div>
+<div class="text-[11px] text-slate-500">Tech Equipment · Today 11:20</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs sm:text-sm font-bold font-mono text-slate-900">-₹4,200.00</div>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-medium">Hardware</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-white/70 hover:bg-white transition-colors border border-slate-200/80 shadow-xs">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">account_balance_wallet</span>
+</div>
+<div>
+<div class="text-xs sm:text-sm font-semibold text-slate-900">Stripe Client Payout</div>
+<div class="text-[11px] text-slate-500">Direct Deposit · Yesterday</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs sm:text-sm font-bold font-mono text-emerald-600">+₹85,000.00</div>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold">Revenue</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-white/70 hover:bg-white transition-colors border border-slate-200/80 shadow-xs">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">show_chart</span>
+</div>
+<div>
+<div class="text-xs sm:text-sm font-semibold text-slate-900">Nippon Nifty 50 SIP</div>
+<div class="text-[11px] text-slate-500">Automated Mutual Fund · Oct 24</div>
+</div>
+</div>
+<div class="text-right">
+<div class="text-xs sm:text-sm font-bold font-mono text-slate-900">-₹25,000.00</div>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-semibold">Investment</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- VALUE STRIP / CORE PILLARS -->
+<section class="w-full max-w-5xl px-4 sm:px-6 py-12 border-y border-slate-200/80">
+<div class="grid grid-cols-2 sm:grid-cols-5 gap-6 text-center">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600 mb-2 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">radio_button_checked</span>
+</div>
+<span class="text-xs font-bold text-slate-900 tracking-wide">TRACK</span>
+<span class="text-[11px] text-slate-500 mt-0.5 font-medium">Real-time telemetry</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 mb-2 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+</div>
+<span class="text-xs font-bold text-slate-900 tracking-wide">ANALYZE</span>
+<span class="text-[11px] text-slate-500 mt-0.5 font-medium">Multi-stream curves</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-xl bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600 mb-2 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</div>
+<span class="text-xs font-bold text-slate-900 tracking-wide">BUDGET</span>
+<span class="text-[11px] text-slate-500 mt-0.5 font-medium">Predictive pacing</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-2 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">savings</span>
+</div>
+<span class="text-xs font-bold text-slate-900 tracking-wide">SAVE</span>
+<span class="text-[11px] text-slate-500 mt-0.5 font-medium">Automated vaults</span>
+</div>
+<div class="col-span-2 sm:col-span-1 flex flex-col items-center">
+<div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 mb-2 shadow-xs">
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+</div>
+<span class="text-xs font-bold text-slate-900 tracking-wide">UNDERSTAND</span>
+<span class="text-[11px] text-slate-500 mt-0.5 font-medium">Zero guesswork</span>
+</div>
+</div>
+</section>
+<!-- BENTO FEATURE GRID (4 ESSENTIAL CARDS) -->
+<section class="w-full max-w-5xl px-4 sm:px-6 py-24" id="features">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-xs font-mono uppercase tracking-wider text-orange-600 font-bold">Core Architecture</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mt-2 mb-3">
+          Designed for absolute clarity.
+        </h2>
+<p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+          Four essential pillars meticulously crafted to deliver quiet confidence over your wealth without cognitive overload.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1: Smart Overview -->
+<div class="group rounded-3xl clay-card-white p-6 sm:p-8 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-orange-100 border border-orange-200 flex items-center justify-center text-orange-600 mb-5 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2">Smart Overview</h3>
+<p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Consolidate savings, credit lines, investments, and provident funds across accounts into one synchronized net worth index.
+            </p>
+</div>
+<!-- Mini UI Snippet -->
+<div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs font-mono">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+<span class="text-slate-600 font-medium">Unified Net Worth</span>
+</div>
+<span class="text-slate-900 font-bold">₹14,82,450</span>
+</div>
+</div>
+<!-- Card 2: Automated Expense Tracking -->
+<div class="group rounded-3xl clay-card-white p-6 sm:p-8 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-5 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">receipt_long</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2">Automated Expense Tracking</h3>
+<p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Effortless classification for UPI scans, credit cards, and recurring subscriptions with 99.8% ML reconciliation precision.
+            </p>
+</div>
+<!-- Mini UI Snippet -->
+<div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs">
+<span class="text-slate-600 font-mono font-medium">Auto-Categorization</span>
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-mono font-bold border border-emerald-200">100% Parsed</span>
+</div>
+</div>
+<!-- Card 3: Intelligent Budgets -->
+<div class="group rounded-3xl clay-card-white p-6 sm:p-8 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-200 flex items-center justify-center text-amber-600 mb-5 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">speed</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2">Intelligent Budgets</h3>
+<p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Adaptive pacing signals that guide your daily spending naturally, projecting end-of-month totals without jarring punitive alerts.
+            </p>
+</div>
+<!-- Mini UI Snippet -->
+<div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1.5">
+<div class="flex justify-between text-[11px] font-mono">
+<span class="text-slate-500 font-medium">Lifestyle &amp; Dining</span>
+<span class="text-slate-900 font-bold">₹18,400 / ₹25,000</span>
+</div>
+<div class="w-full h-2 rounded-full bg-slate-200 overflow-hidden">
+<div class="w-[73%] h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Card 4: AI Financial Insights -->
+<div class="group rounded-3xl clay-card-white p-6 sm:p-8 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" id="ai-insights">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-orange-100 border border-orange-200 flex items-center justify-center text-orange-600 mb-5 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">auto_awesome</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 mb-2">AI Financial Insights</h3>
+<p class="text-sm text-slate-600 leading-relaxed mb-6">
+              Ask plain questions about your money and receive immediate, clear answers synthesized from your real transaction activity.
+            </p>
+</div>
+<!-- Mini UI Snippet -->
+<div class="p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs">
+<div class="text-slate-500 text-[11px] font-mono font-medium mb-1">Q: "Where did I spend most?"</div>
+<div class="text-orange-700 font-semibold leading-tight">Food &amp; Dining rose 18% due to weekend travel.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- HOW IT WORKS (3 CLEAN AIRY STEPS) -->
+<section class="w-full max-w-5xl px-4 sm:px-6 py-20 border-t border-slate-200/80" id="how-it-works">
+<div class="text-center max-w-xl mx-auto mb-16">
+<span class="text-xs font-mono uppercase tracking-wider text-orange-600 font-bold">Streamlined Process</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mt-2 mb-3">
+          Simplicity at every step.
+        </h2>
+<p class="text-sm sm:text-base text-slate-600">
+          Get set up in under two minutes with zero spreadsheet maintenance required.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<!-- Step 1 -->
+<div class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col hover:border-orange-300 transition-colors">
+<span class="text-4xl font-mono font-extrabold text-orange-400/40 mb-4">01</span>
+<h3 class="text-lg font-bold text-slate-900 mb-2">Connect your accounts</h3>
+<p class="text-sm text-slate-600 leading-relaxed">
+            Link checking accounts, cards, and portfolios securely via regulated aggregators or simple manual logging.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col hover:border-amber-300 transition-colors">
+<span class="text-4xl font-mono font-extrabold text-amber-400/50 mb-4">02</span>
+<h3 class="text-lg font-bold text-slate-900 mb-2">Finsick analyzes</h3>
+<p class="text-sm text-slate-600 leading-relaxed">
+            Transactions are cleaned, labeled, and assembled into fluid cash-flow models and category insights automatically.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col hover:border-emerald-300 transition-colors">
+<span class="text-4xl font-mono font-extrabold text-emerald-400/40 mb-4">03</span>
+<h3 class="text-lg font-bold text-slate-900 mb-2">Make confident decisions</h3>
+<p class="text-sm text-slate-600 leading-relaxed">
+            Spot micro-leakages, grow targeted savings reserves, and enjoy peace of mind with continuous visibility.
+          </p>
+</div>
+</div>
+</section>
+<!-- INSTITUTIONAL SECURITY & PRIVACY CARD -->
+<section class="w-full max-w-5xl px-4 sm:px-6 py-16" id="security">
+<div class="rounded-3xl clay-card-white p-8 sm:p-10 shadow-clay-card-light">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-200/80">
+<div class="max-w-xl">
+<div class="inline-flex items-center gap-1.5 text-xs font-mono uppercase text-emerald-700 tracking-wider mb-2 font-bold">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span>Privacy by Architecture</span>
+</div>
+<h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Your data stays exclusively yours.</h3>
+<p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              We never sell your data, train public models on your finances, or compromise on rigorous bank-grade protections.
+            </p>
+</div>
+<div class="px-4 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono font-bold shrink-0">
+            256-Bit TLS · Zero Data Selling
+          </div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8">
+<div>
+<h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-500 text-[18px]">lock</span>
+<span>AES-256 Encryption</span>
+</h4>
+<p class="text-xs text-slate-500 leading-relaxed">Continuous encryption at rest and in transit with modern forward secrecy.</p>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-500 text-[18px]">memory</span>
+<span>Local ML Inference</span>
+</h4>
+<p class="text-xs text-slate-500 leading-relaxed">Smart categorization runs on private sandboxed environments without cloud leaks.</p>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[18px]">visibility_off</span>
+<span>Zero 3rd-Party Trackers</span>
+</h4>
+<p class="text-xs text-slate-500 leading-relaxed">No marketing ad pixels, no telemetry sharing, and complete data exportability.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- MINIMAL FINAL CTA ENCLOSURE -->
+<section class="w-full max-w-5xl px-4 sm:px-6 py-20" id="get-started">
+<div class="relative rounded-3xl clay-card-white p-8 sm:p-14 text-center shadow-clay-card-light overflow-hidden">
+<!-- Subtle background ambient warmth -->
+<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-orange-200/50 blur-[90px] rounded-full pointer-events-none"></div>
+<span class="text-xs font-mono uppercase tracking-wider text-orange-600 font-bold mb-3 block">Start Your Journey</span>
+<h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
+          Your money. Your data.<br/>
+<span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-amber-500 to-emerald-600">Your decisions.</span>
+</h2>
+<p class="text-sm sm:text-base text-slate-600 max-w-lg mx-auto mb-8 leading-relaxed">
+          Join high-performing individuals who manage their wealth with calm precision and zero friction.
+        </p>
+<div class="flex flex-wrap items-center justify-center gap-4 mb-8">
+<a class="h-12 px-8 rounded-xl bg-gradient-to-r from-orange-500 via-orange-600 to-amber-500 hover:brightness-105 text-white font-bold text-sm transition-all duration-200 shadow-clay-button-orange flex items-center gap-2 active:scale-95" href="#register">
+<span>Get Started — It's Free</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-mono font-medium">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-emerald-600 font-bold">check_circle</span> No credit card required
+          </span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-emerald-600 font-bold">check_circle</span> 100% Free Core Tier
+          </span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-emerald-600 font-bold">check_circle</span> Cancel or export anytime
+          </span>
+</div>
+</div>
+</section>
+</main>
+<!-- CLEAN, MINIMAL LIGHT FOOTER -->
+<footer class="w-full border-t border-slate-200 bg-white/90 py-12 px-4 sm:px-6 relative z-10">
+<div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+<!-- Brand & Copyright -->
+<div class="flex items-center gap-3">
+<img alt="Finsick Logo" class="h-6 w-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKAZagEPcsAs7vn9XXXoHuYeHw2CZBPkWRitvY7WUyrL6DQAQKOLlPTPfUQv-vausb6tFeDvwO2Tf4wbs-v2v163xpj1lAjMXeQyMOVeKV5SIbxO2lRD9fa7Hy_kDWpLGopw4xG-y6tEHlmi2rMbUCRfynA_trxRdWONQlkV0Z9LeI2KDIczKOBM59rQmVzpLIfRGInEER9BXPAfgyJr-Y6oU314noAgARNzg58A8MA58jn4J-EasPhd3GN3LEYRju_ws"/>
+<span class="font-bold text-sm text-slate-900">Finsick</span>
+<span class="text-xs text-slate-500 ml-2">© 2025 Finsick Systems. All rights reserved.</span>
+</div>
+<!-- Footer Navigation Links -->
+<div class="flex items-center gap-6 text-xs font-semibold text-slate-500">
+<a class="hover:text-orange-600 transition-colors" href="#features">Features</a>
+<a class="hover:text-orange-600 transition-colors" href="#security">Security</a>
+<a class="hover:text-orange-600 transition-colors" href="#">Privacy</a>
+<a class="hover:text-orange-600 transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>
