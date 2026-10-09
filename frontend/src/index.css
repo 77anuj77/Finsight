@@ -1,0 +1,471 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   FinSight Liquid Glass + Claymorphism Design System
+   ============================================ */
+
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+  /* Liquid Glass Palette */
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.25);
+  --glass-shadow: rgba(0, 0, 0, 0.08);
+
+  /* Claymorphism Palette */
+  --clay-bg: rgba(248, 250, 252, 0.95);
+  --clay-light: rgba(255, 255, 255, 0.9);
+  --clay-dark: rgba(200, 210, 220, 0.3);
+  --clay-shadow-light: rgba(255, 255, 255, 0.8);
+  --clay-shadow-dark: rgba(140, 150, 160, 0.15);
+
+  /* Semantic Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Typography Scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+    background-attachment: fixed;
+    color: #1e293b;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* Noise overlay for texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.4;
+  }
+
+  /* Ambient background blobs */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  ::selection {
+    background: rgba(34, 197, 94, 0.2);
+    color: #0f172a;
+  }
+}
+
+/* ============================================
+   LIQUID GLASS COMPONENTS
+   ============================================ */
+@layer components {
+  /* Glass Card - Double Bezel Architecture */
+  .glass-card {
+    @apply relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-squircle-lg;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02);
+    transition: all 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .glass-card:hover {
+    @apply bg-white/15 border-white/30;
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.02);
+    transform: translateY(-2px);
+  }
+
+  /* Outer shell for double-bezel */
+  .glass-shell {
+    @apply p-1.5 bg-white/5 rounded-[2rem] border border-white/10;
+  }
+
+  /* Inner core */
+  .glass-core {
+    @apply bg-white/10 backdrop-blur-xl rounded-[calc(2rem-0.375rem)] border border-white/20 p-6;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  /* Glass Panel - for larger sections */
+  .glass-panel {
+    @apply backdrop-blur-2xl bg-white/5 border border-white/15 rounded-squircle-xl;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* Glass Modal */
+  .glass-modal {
+    @apply backdrop-blur-3xl bg-white/80 border border-white/30 rounded-squircle-xl shadow-glass-xl;
+  }
+
+  /* Glass Overlay */
+  .glass-overlay {
+    @apply backdrop-blur-2xl bg-black/40;
+  }
+
+  /* ============================================
+     CLAYMORPHISM COMPONENTS
+     ============================================ */
+
+  /* Clay Button - Primary */
+  .clay-btn {
+    @apply relative px-6 py-3 rounded-pill font-semibold text-sm transition-all duration-500
+           active:scale-[0.98] cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow:
+      6px 6px 12px var(--clay-shadow-dark),
+      -6px -6px 12px var(--clay-shadow-light),
+      inset 0 2px 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .clay-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      8px 8px 16px var(--clay-shadow-dark),
+      -8px -8px 16px var(--clay-shadow-light),
+      inset 0 2px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  .clay-btn:active {
+    transform: translateY(0);
+    box-shadow:
+      2px 2px 4px var(--clay-shadow-dark),
+      -2px -2px 4px var(--clay-shadow-light),
+      inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .clay-btn-primary {
+    @apply clay-btn text-white;
+    background: linear-gradient(145deg, #22c55e 0%, #16a34a 100%);
+    box-shadow:
+      6px 6px 12px rgba(140, 150, 160, 0.3),
+      -6px -6px 12px rgba(255, 255, 255, 0.9),
+      inset 0 2px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .clay-btn-primary:hover {
+    background: linear-gradient(145deg, #16a34a 0%, #15803d 100%);
+    box-shadow:
+      8px 8px 16px rgba(140, 150, 160, 0.35),
+      -8px -8px 16px rgba(255, 255, 255, 0.95),
+      inset 0 2px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Clay Button - Secondary */
+  .clay-btn-secondary {
+    @apply clay-btn text-ink-700;
+  }
+
+  /* Clay Button - Danger */
+  .clay-btn-danger {
+    @apply clay-btn text-white;
+    background: linear-gradient(145deg, #ef4444 0%, #dc2626 100%);
+  }
+
+  /* Clay Input */
+  .clay-input {
+    @apply w-full px-4 py-3 rounded-squircle border-0 focus:outline-none focus:ring-2 transition-all duration-400;
+    background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    box-shadow:
+      inset 3px 3px 6px rgba(140, 150, 160, 0.1),
+      inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+    color: #1e293b;
+  }
+
+  .clay-input:focus {
+    @apply ring-2 ring-primary-500/30;
+    box-shadow:
+      inset 3px 3px 6px rgba(140, 150, 160, 0.12),
+      inset -3px -3px 6px rgba(255, 255, 255, 0.9),
+      0 0 0 4px rgba(34, 197, 94, 0.1);
+  }
+
+  .clay-input::placeholder {
+    color: #94a3b8;
+  }
+
+  /* Clay Select */
+  .clay-select {
+    @apply clay-input appearance-none cursor-pointer pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+  }
+
+  /* Clay Badge */
+  .clay-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-pill text-xs font-semibold transition-all duration-300;
+    background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    box-shadow:
+      2px 2px 4px rgba(140, 150, 160, 0.1),
+      -2px -2px 4px rgba(255, 255, 255, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .clay-badge-success {
+    background: linear-gradient(145deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+    box-shadow:
+      2px 2px 4px rgba(16, 185, 129, 0.15),
+      -2px -2px 4px rgba(255, 255, 255, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .clay-badge-warning {
+    background: linear-gradient(145deg, #fef3c7 0%, #fde68a 100%);
+    color: #92400e;
+    box-shadow:
+      2px 2px 4px rgba(245, 158, 11, 0.15),
+      -2px -2px 4px rgba(255, 255, 255, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .clay-badge-danger {
+    background: linear-gradient(145deg, #fee2e2 0%, #fecaca 100%);
+    color: #991b1b;
+    box-shadow:
+      2px 2px 4px rgba(239, 68, 68, 0.15),
+      -2px -2px 4px rgba(255, 255, 255, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .clay-badge-info {
+    background: linear-gradient(145deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #1e40af;
+    box-shadow:
+      2px 2px 4px rgba(59, 130, 246, 0.15),
+      -2px -2px 4px rgba(255, 255, 255, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  /* Clay Toggle */
+  .clay-toggle {
+    @apply relative w-12 h-7 rounded-pill cursor-pointer transition-all duration-400;
+    background: linear-gradient(145deg, #e2e8f0 0%, #cbd5e1 100%);
+    box-shadow:
+      inset 2px 2px 4px rgba(140, 150, 160, 0.15),
+      inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+  }
+
+  .clay-toggle.active {
+    background: linear-gradient(145deg, #22c55e 0%, #16a34a 100%);
+  }
+
+  .clay-toggle::after {
+    content: '';
+    @apply absolute top-0.5 left-0.5 w-6 h-6 rounded-full transition-all duration-400;
+    background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow:
+      2px 2px 4px rgba(0, 0, 0, 0.15),
+      -2px -2px 4px rgba(255, 255, 255, 0.8);
+  }
+
+  .clay-toggle.active::after {
+    @apply left-5.5;
+  }
+
+  /* ============================================
+     TYPOGRAPHY
+     ============================================ */
+  .eyebrow {
+    @apply text-[10px] uppercase tracking-[0.2em] font-semibold mb-2;
+    color: rgba(100, 116, 139, 0.8);
+  }
+
+  .display-text {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .heading-text {
+    @apply text-2xl md:text-3xl font-bold leading-tight;
+    letter-spacing: -0.015em;
+  }
+
+  .subheading-text {
+    @apply text-lg text-ink-500 font-medium;
+  }
+
+  /* ============================================
+     SCROLLBAR
+     ============================================ */
+  .scrollbar-glass {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-glass::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* ============================================
+   ANIMATION UTILITIES
+   ============================================ */
+@layer utilities {
+  /* Scroll reveal animations */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+    transition: all 0.8s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* Stagger children */
+  .stagger-children > * {
+    opacity: 0;
+    animation: fadeIn 0.6s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+  .stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .reveal-on-scroll {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
+  /* Focus visible */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:ring-offset-2 focus:ring-offset-transparent;
+  }
+}
+
+/* ============================================
+   CUSTOM CLASSES
+   ============================================ */
+@layer components {
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 50%, #059669 100%);
+  }
+
+  .gradient-text-blue {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+  }
+
+  .gradient-text-purple {
+    background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #7e22ce 100%);
+  }
+
+  /* Shimmer Effect */
+  .shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+  }
+
+  .shimmer.loading::after {
+    animation: shimmer 2s infinite;
+  }
+}
