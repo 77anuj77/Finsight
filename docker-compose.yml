@@ -1,0 +1,107 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: finsight-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-finsight_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-finsight_secure_password}
+      POSTGRES_DB: ${POSTGRES_DB:-finsight}
+      APP_ENV: ${APP_ENV:-development}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/sql:/docker-entrypoint-initdb.d:ro
+    networks:
+      - finsight-network
+
+  mongodb:
+    image: mongo:7
+    container_name: finsight-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-admin_password}
+      MONGO_INITDB_DATABASE: ${MONGO_DB:-finsight_analytics}
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_logs:/var/log/mongodb
+    networks:
+      - finsight-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: finsight-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - finsight-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: finsight-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-finsight_user}:${POSTGRES_PASSWORD:-finsight_secure_password}@postgres:5432/${POSTGRES_DB:-finsight}
+      MONGODB_URI: mongodb://${MONGO_USER:-admin}:${MONGO_PASSWORD:-admin_password}@mongodb:27017/${MONGO_DB:-finsight_analytics}?authSource=admin
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key-change-in-production}
+      JWT_ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-15}
+      REFRESH_TOKEN_EXPIRE_DAYS: ${REFRESH_TOKEN_EXPIRE_DAYS:-7}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      - postgres
+      - mongodb
+      - redis
+    volumes:
+      - ./backend:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - finsight-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+    container_name: finsight-frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+      VITE_APP_NAME: FinSight
+    volumes:
+      - ./frontend/src:/app/src
+    command: npm run dev -- --host
+    networks:
+      - finsight-network
+
+volumes:
+  postgres_data:
+    driver: local
+  mongodb_data:
+    driver: local
+  mongodb_logs:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  finsight-network:
+    driver: bridge
