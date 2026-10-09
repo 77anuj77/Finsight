@@ -1,0 +1,782 @@
+<!DOCTYPE html><html class="light" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>
+  @layer base {
+    html, body { margin: 0; padding: 0; }
+    body { overscroll-behavior: none; }
+    main > :first-child { margin-top: 0 !important; }
+    main > :last-child { margin-bottom: 0 !important; }
+  }
+  ::-webkit-scrollbar { display: none; }
+
+  /* Claymorphism + Frosted Specular Glass Fusion Styles */
+  .clay-card {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    box-shadow: 
+      0 18px 36px -10px rgba(120, 145, 185, 0.22),
+      0 4px 14px rgba(145, 170, 205, 0.12),
+      inset 0 2px 4px rgba(255, 255, 255, 0.95),
+      inset 0 -3px 6px rgba(185, 200, 222, 0.28);
+  }
+
+  .clay-card-subtle {
+    background: rgba(248, 250, 254, 0.75);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 
+      0 8px 20px -6px rgba(135, 160, 195, 0.16),
+      inset 0 1.5px 3px rgba(255, 255, 255, 0.9),
+      inset 0 -2px 4px rgba(190, 205, 225, 0.22);
+  }
+
+  .clay-card-inset {
+    background: rgba(238, 243, 250, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 
+      inset 0 2px 5px rgba(140, 165, 195, 0.18),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.85);
+  }
+
+  .clay-pill-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 245, 253, 0.85));
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 
+      0 6px 16px -4px rgba(120, 145, 185, 0.2),
+      inset 0 2px 3px rgba(255, 255, 255, 0.95),
+      inset 0 -2px 3px rgba(180, 198, 222, 0.28);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .clay-pill-btn:hover {
+    box-shadow: 
+      0 8px 22px -4px rgba(110, 140, 185, 0.28),
+      inset 0 2px 3px rgba(255, 255, 255, 1),
+      inset 0 -1px 2px rgba(180, 198, 222, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .clay-pill-btn:active {
+    box-shadow: 
+      0 2px 6px rgba(120, 145, 185, 0.15),
+      inset 0 2px 4px rgba(140, 165, 195, 0.28),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.7);
+    transform: translateY(1px);
+  }
+
+  .clay-primary-btn {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 
+      0 8px 24px -4px rgba(2, 132, 199, 0.42),
+      inset 0 2px 4px rgba(255, 255, 255, 0.45),
+      inset 0 -2px 4px rgba(3, 105, 161, 0.6);
+  }
+
+  .clay-primary-btn:hover {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 
+      0 12px 28px -4px rgba(2, 132, 199, 0.52),
+      inset 0 2px 4px rgba(255, 255, 255, 0.55);
+  }
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { 
+  darkMode: "class", 
+  theme: { 
+    extend: { 
+      colors: { 
+        "brand-slate": "#0f172a",
+        "brand-navy": "#1e293b",
+        "brand-muted": "#64748b",
+        "brand-subtle": "#94a3b8",
+        "clay-bg": "#f0f4f9",
+        "clay-surface": "rgba(255, 255, 255, 0.78)",
+        "accent-cyan": "#0284c7",
+        "accent-sky": "#38bdf8",
+        "accent-indigo": "#6366f1",
+        "accent-violet": "#8b5cf6",
+        "accent-emerald": "#10b981",
+        "accent-amber": "#f59e0b",
+        "accent-rose": "#f43f5e"
+      }, 
+      fontFamily: { 
+        sans: ["Plus Jakarta Sans", "Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"]
+      } 
+    } 
+  } 
+};</script></head><body class="bg-[#eef3f8] text-brand-slate min-h-screen relative font-sans selection:bg-sky-200 selection:text-sky-900 antialiased overflow-x-hidden">
+<!-- Subtle Ambient Caustic Light Meshes (Light Ethereal Clay Glow) -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+<div class="absolute -top-40 left-1/4 w-[750px] h-[520px] rounded-full bg-sky-200/50 blur-[130px] opacity-70"></div>
+<div class="absolute top-1/4 -right-20 w-[650px] h-[550px] rounded-full bg-indigo-100/60 blur-[150px] opacity-60"></div>
+<div class="absolute bottom-10 left-10 w-[700px] h-[600px] rounded-full bg-cyan-100/50 blur-[160px] opacity-65"></div>
+<div class="absolute top-2/3 right-1/3 w-[500px] h-[450px] rounded-full bg-violet-100/50 blur-[140px] opacity-50"></div>
+</div>
+<!-- Refined Light Clay-Glass Floating Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+<div class="h-20 w-full px-6 lg:px-12 flex items-center justify-between">
+<div class="w-full flex items-center justify-between px-5 py-2 rounded-full clay-card">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2.5">
+<img alt="FinSight Logo" class="h-9 w-auto object-contain drop-shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhVoF_VQ5jOgy2hecckmc1-RkUsFNUV3lmb-cnfxrCty3ymMYX8cU1wzMOI2ITUbCwikE7N8cXJkBNs1iZ9O18QskjaHcN4Bm7lGrm_ZLI68_JMNa3O_W7ukarVr1dvqpnm_UCXkcFNQeIai-M1wAa-3so12JnkVgDIgDSrFNefDJ3A2Uu36WJrAZg5kwE7OUof5Y7egi5TNvU33bcgsb1i5R0LUwAJLXsoQ8vpMl9pvmNcROgLB8bTBPYn_9gotBn-kE">
+<span class="font-extrabold text-xl tracking-tight text-slate-900">FinSight</span>
+</div>
+<div class="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50/80 border border-emerald-200/60 shadow-inner">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="font-mono text-[11px] font-semibold uppercase text-emerald-700 tracking-wider">AI Engines Synced</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden lg:flex items-center gap-1.5 p-1 rounded-full clay-card-inset">
+<a aria-current="page" class="transition-all clay-pill-btn text-sky-900 font-bold text-[13.5px] rounded-full px-4 py-1.5 shadow-sm" data-path="overview" href="#">Overview</a>
+<a class="font-medium text-[13.5px] text-slate-600 hover:text-slate-900 px-4 py-1.5 rounded-full transition-all hover:bg-white/50" data-path="transactions" href="#">Transactions</a>
+<a class="font-medium text-[13.5px] text-slate-600 hover:text-slate-900 px-4 py-1.5 rounded-full transition-all hover:bg-white/50" data-path="budget-and-goals" href="#">Budget &amp; Goals</a>
+<a class="font-medium text-[13.5px] text-slate-600 hover:text-slate-900 px-4 py-1.5 rounded-full transition-all hover:bg-white/50" data-path="fraud-and-risk" href="#">Fraud &amp; Risk</a>
+<a class="font-medium text-[13.5px] text-slate-600 hover:text-slate-900 px-4 py-1.5 rounded-full transition-all hover:bg-white/50" data-path="analytics" href="#">Analytics</a>
+<a class="font-medium text-[13.5px] text-slate-600 hover:text-slate-900 px-4 py-1.5 rounded-full transition-all hover:bg-white/50" data-path="settings" href="#">Settings</a>
+</nav>
+<!-- Right Profile & Currency Tools -->
+<div class="flex items-center gap-3">
+<div class="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full clay-pill-btn cursor-pointer">
+<span class="font-mono text-xs font-bold text-sky-800">USD</span>
+<span class="material-symbols-outlined text-[16px] text-slate-400">expand_more</span>
+</div>
+<div class="relative flex items-center justify-center w-10 h-10 rounded-full clay-pill-btn cursor-pointer text-slate-700">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-sky-500 shadow-[0_0_8px_rgba(14,165,233,0.8)]"></span>
+</div>
+<div class="flex items-center gap-2.5 pl-1.5">
+<div class="w-9 h-9 rounded-full bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center shadow-md shadow-sky-500/25 border-2 border-white">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div class="hidden md:flex flex-col text-left">
+<span class="text-xs font-bold text-slate-800 leading-tight">Chief Officer</span>
+<span class="font-mono text-[10px] text-slate-500 font-medium leading-tight">Prime Portfolio</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="w-full pt-24 relative z-10">
+<div class="flex flex-col w-full px-6 lg:px-12 pb-14 space-y-7">
+<!-- Executive Hero Hub (Inflated Clay Glass Tile) -->
+<section class="relative w-full rounded-3xl clay-card p-7 lg:p-9 overflow-hidden transition-all duration-300">
+<!-- Ambient light caustic glows -->
+<div class="pointer-events-none absolute -top-24 -right-16 w-96 h-96 rounded-full bg-sky-200/50 blur-3xl"></div>
+<div class="pointer-events-none absolute -bottom-20 -left-12 w-80 h-80 rounded-full bg-indigo-200/45 blur-3xl"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+<div class="flex items-start gap-4">
+<!-- Monogram Logo Node -->
+<div class="relative shrink-0 w-16 h-16 rounded-2xl clay-pill-btn flex items-center justify-center p-2.5">
+<img class="w-full h-full object-contain drop-shadow" data-alt="FinSight 3D Glass Emblem" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKtxBO8ocT_S8QWkYb0wu9fSiOcmP7FUXXiIPvwSYF_2gPYq2hHCupSK8dYFyy3130CrvzDSj69AUy4xGyzHyENsrNEqx4b54hIQEVnRM2oTqswpoB2ufLcumJuDwDvGutPsz861WyjAAmEOAM1FMz3t8sREd8v2eEZMz-_GFr9e6txUf-1pHiJPHWJS718pqqYuBWai-HDHh2ibzhrZ0VAXfP91g5YgV9o_TdEzqwT_QbIAj16pTkeuP57p6Sgl2F9P0">
+<span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-sky-500 shadow-[0_0_8px_rgba(14,165,233,0.7)]"></span>
+</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-mono text-[11px] font-bold uppercase text-sky-800 tracking-wider bg-sky-100/80 border border-sky-200/60 px-2.5 py-0.5 rounded-full shadow-inner">FinSight Neural Core 4.2 Active</span>
+<span class="font-mono text-[11px] text-slate-500 font-medium">| FastApi Engine: Synchronized</span>
+</div>
+<h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Good evening, Alex</h1>
+<p class="text-sm font-medium text-slate-600">Global institutional liquidity, multi-ledger balances, and real-time surveillance active.</p>
+</div>
+</div>
+<!-- Net Worth Highlight & Quick Switcher -->
+<div class="flex flex-col sm:flex-row sm:items-center gap-6 bg-white/70 border border-white/90 p-4 sm:px-6 rounded-2xl shadow-sm backdrop-blur-xl">
+<div class="space-y-0.5">
+<span class="font-mono text-[10.5px] uppercase tracking-wider text-slate-500 font-semibold">Consolidated Net Worth</span>
+<div class="flex items-baseline gap-3">
+<span class="font-mono text-3xl sm:text-[34px] font-extrabold text-slate-900 tracking-tight">$284,920.45</span>
+<span class="inline-flex items-center gap-1 font-mono text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2 py-0.5 rounded-full shadow-inner">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+                +14.2% (+$35.4k MTD)
+              </span>
+</div>
+</div>
+<div class="h-10 w-px bg-slate-200 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<button class="h-11 px-5 rounded-full clay-primary-btn text-white font-bold text-sm shadow-md hover:brightness-105 transition-all flex items-center gap-2 active:scale-95 cursor-pointer" id="toggle-sim-mode">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span>Live Feed</span>
+</button>
+<button class="h-11 w-11 rounded-full clay-pill-btn text-slate-700 flex items-center justify-center transition-all cursor-pointer" id="btn-open-audit" title="Audit Controls">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+</div>
+<!-- 4 Inflated Tactile Clay Pods -->
+<div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-7">
+<!-- Pod 1: Available Liquidity -->
+<div class="p-5 rounded-2xl clay-card-subtle hover:bg-white/90 transition-all duration-300 group">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[11px] uppercase font-bold tracking-wider text-slate-600">Available Liquidity</span>
+<div class="w-9 h-9 rounded-xl bg-sky-100/90 border border-sky-200/60 flex items-center justify-center text-sky-700 shadow-inner">
+<span class="material-symbols-outlined text-[19px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-3 font-mono text-2xl font-bold text-slate-900">$62,450.00</div>
+<div class="mt-1.5 flex items-center justify-between text-slate-500 text-xs">
+<span>Checking &amp; High-Yield</span>
+<span class="font-mono font-bold text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200/50">+$1,450 7d</span>
+</div>
+<div class="w-full h-2 bg-slate-200/70 rounded-full mt-3.5 overflow-hidden p-0.5 shadow-inner">
+<div class="h-full bg-gradient-to-r from-sky-400 to-sky-600 rounded-full shadow-sm" style="width: 68%;"></div>
+</div>
+</div>
+<!-- Pod 2: Investment Capital -->
+<div class="p-5 rounded-2xl clay-card-subtle hover:bg-white/90 transition-all duration-300 group">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[11px] uppercase font-bold tracking-wider text-slate-600">Investment Capital</span>
+<div class="w-9 h-9 rounded-xl bg-indigo-100/90 border border-indigo-200/60 flex items-center justify-center text-indigo-700 shadow-inner">
+<span class="material-symbols-outlined text-[19px]">candlestick_chart</span>
+</div>
+</div>
+<div class="mt-3 font-mono text-2xl font-bold text-slate-900">$186,210.30</div>
+<div class="mt-1.5 flex items-center justify-between text-slate-500 text-xs">
+<span>Weighted Yield: 8.4% APY</span>
+<span class="font-mono font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/50">+9.1% Q3</span>
+</div>
+<div class="w-full h-2 bg-slate-200/70 rounded-full mt-3.5 overflow-hidden p-0.5 shadow-inner">
+<div class="h-full bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full shadow-sm" style="width: 84%;"></div>
+</div>
+</div>
+<!-- Pod 3: Monthly Burn Rate -->
+<div class="p-5 rounded-2xl clay-card-subtle hover:bg-white/90 transition-all duration-300 group">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[11px] uppercase font-bold tracking-wider text-slate-600">Monthly Burn Rate</span>
+<div class="w-9 h-9 rounded-xl bg-amber-100/90 border border-amber-200/60 flex items-center justify-center text-amber-700 shadow-inner">
+<span class="material-symbols-outlined text-[19px]">local_fire_department</span>
+</div>
+</div>
+<div class="mt-3 font-mono text-2xl font-bold text-slate-900">$4,890.12</div>
+<div class="mt-1.5 flex items-center justify-between text-slate-500 text-xs">
+<span>18% under budget limit</span>
+<span class="font-mono font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/50">Safe Margin</span>
+</div>
+<div class="w-full h-2 bg-slate-200/70 rounded-full mt-3.5 overflow-hidden p-0.5 shadow-inner">
+<div class="h-full bg-gradient-to-r from-amber-400 to-amber-600 rounded-full shadow-sm" style="width: 48%;"></div>
+</div>
+</div>
+<!-- Pod 4: AI Surveillance & Risk Score -->
+<div class="p-5 rounded-2xl clay-card-subtle hover:bg-white/90 transition-all duration-300 group">
+<div class="flex items-center justify-between">
+<span class="font-mono text-[11px] uppercase font-bold tracking-wider text-slate-600">Neural Risk Index</span>
+<div class="w-9 h-9 rounded-xl bg-sky-100/90 border border-sky-200/60 flex items-center justify-center text-sky-700 shadow-inner">
+<span class="material-symbols-outlined text-[19px]">security</span>
+</div>
+</div>
+<div class="mt-3 font-mono text-2xl font-bold text-slate-900">99.4% Safe</div>
+<div class="mt-1.5 flex items-center justify-between text-slate-500 text-xs">
+<span>0 critical flags, 1 anomaly</span>
+<span class="font-mono font-bold text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200/50">Supervised</span>
+</div>
+<div class="w-full h-2 bg-slate-200/70 rounded-full mt-3.5 overflow-hidden p-0.5 shadow-inner">
+<div class="h-full bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full shadow-sm" style="width: 99.4%;"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Analytics & Intelligence Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+<!-- Portfolio Trajectory & Cash Flow Waveform (8 cols) -->
+<div class="lg:col-span-8 flex flex-col justify-between rounded-3xl clay-card p-7 shadow-lg relative overflow-hidden transition-all duration-300">
+<div class="pointer-events-none absolute -top-10 left-1/3 w-80 h-80 rounded-full bg-sky-200/40 blur-[120px]"></div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-xl font-bold text-slate-900 tracking-tight">Portfolio Trajectory &amp; Cash Flow Waveform</h2>
+<span class="material-symbols-outlined text-[18px] text-slate-400 hover:text-slate-700 cursor-pointer" title="Compiled from continuous Postgres transaction telemetry">info</span>
+</div>
+<p class="text-xs font-medium text-slate-500 mt-0.5">Dual-stream predictive spline mapping inflows vs burn rate</p>
+</div>
+<!-- Range Pills -->
+<div class="inline-flex p-1 rounded-full clay-card-inset self-start sm:self-auto" id="timeline-filters">
+<button class="px-3 py-1 rounded-full font-mono text-[11px] font-semibold text-slate-600 hover:text-slate-900 transition-all" data-range="1D">1D</button>
+<button class="px-3 py-1 rounded-full font-mono text-[11px] font-semibold text-slate-600 hover:text-slate-900 transition-all" data-range="1W">1W</button>
+<button class="px-3 py-1 rounded-full font-mono text-[11px] font-bold clay-pill-btn text-sky-900 shadow-sm" data-range="1M">1M</button>
+<button class="px-3 py-1 rounded-full font-mono text-[11px] font-semibold text-slate-600 hover:text-slate-900 transition-all" data-range="1Y">1Y</button>
+<button class="px-3 py-1 rounded-full font-mono text-[11px] font-semibold text-slate-600 hover:text-slate-900 transition-all" data-range="ALL">ALL</button>
+</div>
+</div>
+<!-- Chart Canvas Visual with vibrant gradients on light surface -->
+<div class="relative w-full h-72 my-5 flex flex-col justify-end">
+<svg class="w-full h-full overflow-visible" fill="none" preserveAspectRatio="none" viewBox="0 0 720 220">
+<defs>
+<!-- Vibrant Cyan / Sky Inflow Gradient -->
+<linearGradient id="lightCyanGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0284c7" stop-opacity="0.32"></stop>
+<stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"></stop>
+</linearGradient>
+<!-- Indigo Outflow Gradient -->
+<linearGradient id="lightVioletGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.22"></stop>
+<stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.0"></stop>
+</linearGradient>
+</defs>
+<!-- Light subtle Grid Lines -->
+<line stroke="#cbd5e1" stroke-dasharray="4 4" stroke-opacity="0.8" x1="0" x2="720" y1="40" y2="40"></line>
+<line stroke="#cbd5e1" stroke-dasharray="4 4" stroke-opacity="0.8" x1="0" x2="720" y1="95" y2="95"></line>
+<line stroke="#cbd5e1" stroke-dasharray="4 4" stroke-opacity="0.8" x1="0" x2="720" y1="150" y2="150"></line>
+<!-- Shaded Area Inflows -->
+<path d="M 0 170 C 90 160, 160 120, 240 135 C 320 150, 390 70, 480 80 C 560 90, 630 35, 720 45 L 720 220 L 0 220 Z" fill="url(#lightCyanGradient)"></path>
+<!-- Primary Inflow Spline -->
+<path d="M 0 170 C 90 160, 160 120, 240 135 C 320 150, 390 70, 480 80 C 560 90, 630 35, 720 45" stroke="#0284c7" stroke-linecap="round" stroke-width="3.5"></path>
+<!-- Outflow Path -->
+<path d="M 0 190 C 80 185, 170 175, 260 180 C 350 185, 420 150, 520 160 C 600 168, 660 140, 720 130" stroke="#8b5cf6" stroke-dasharray="5 5" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Projected Wave Extension (ML Prediction) -->
+<path d="M 720 45 C 750 49, 780 25, 820 20" opacity="0.85" stroke="#0ea5e9" stroke-dasharray="3 3" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Active Marker Dot -->
+<circle class="drop-shadow-md" cx="480" cy="80" fill="#0284c7" r="6" stroke="#ffffff" stroke-width="2.5"></circle>
+<circle class="animate-pulse" cx="480" cy="80" fill="#0284c7" opacity="0.25" r="15"></circle>
+</svg>
+<!-- Floating Data Annotation Pill (Clay Badge) -->
+<div class="absolute left-[62%] top-6 -translate-x-1/2 clay-pill-btn px-3.5 py-1.5 rounded-full flex items-center gap-2 pointer-events-none">
+<div class="w-2.5 h-2.5 rounded-full bg-sky-500 shadow-[0_0_8px_rgba(14,165,233,0.7)]"></div>
+<span class="font-mono text-xs font-bold text-slate-800">Peak Inflow: $28,400.00</span>
+<span class="text-xs text-sky-700 font-semibold bg-sky-50 px-1.5 py-0.5 rounded-full">Oct 24</span>
+</div>
+</div>
+<!-- Footer Bar Metrics -->
+<div class="relative z-10 flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200/70">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-3.5 h-2 rounded-full bg-sky-600 shadow-sm"></span>
+<span class="text-xs font-medium text-slate-600">Gross Inflows</span>
+<span class="font-mono text-xs font-bold text-slate-900">$41,850</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3.5 h-2 rounded-full bg-indigo-500 shadow-sm"></span>
+<span class="text-xs font-medium text-slate-600">Operating Outflows</span>
+<span class="font-mono text-xs font-bold text-slate-900">$8,930</span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 font-mono text-xs">
+<span class="material-symbols-outlined text-[16px] text-emerald-600">auto_awesome</span>
+<span>ARIMA Forecast Confidence: <strong class="text-slate-800 font-bold">94.6%</strong></span>
+</div>
+</div>
+</div>
+<!-- AI Categorization & Allocation Donut (4 cols) -->
+<div class="lg:col-span-4 flex flex-col justify-between rounded-3xl clay-card p-7 shadow-lg relative overflow-hidden transition-all duration-300">
+<div class="pointer-events-none absolute -bottom-16 -right-10 w-60 h-60 rounded-full bg-violet-200/40 blur-[100px]"></div>
+<div class="relative z-10">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-slate-900 tracking-tight">AI Categorization</h2>
+<span class="font-mono text-[10px] font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200/70 flex items-center gap-1 shadow-inner">
+<span class="material-symbols-outlined text-[12px]">psychology</span> ML Categorizer
+            </span>
+</div>
+<p class="text-xs font-medium text-slate-500 mt-0.5">Automated NLP semantic tagging of raw ledger payloads</p>
+</div>
+<!-- Donut Chart & Center Stats with Clay Ring -->
+<div class="relative my-6 flex items-center justify-center">
+<svg class="w-52 h-52 -rotate-90 transform drop-shadow-sm" viewBox="0 0 140 140">
+<!-- Background Track -->
+<circle cx="70" cy="70" fill="transparent" r="54" stroke="#e2e8f0" stroke-width="15"></circle>
+<!-- Housing 32% (Teal/Sky) -->
+<circle cx="70" cy="70" fill="transparent" r="54" stroke="#0ea5e9" stroke-dasharray="108 340" stroke-dashoffset="0" stroke-linecap="round" stroke-width="15"></circle>
+<!-- Capital Growth 28% (Indigo) -->
+<circle cx="70" cy="70" fill="transparent" r="54" stroke="#6366f1" stroke-dasharray="95 340" stroke-dashoffset="-115" stroke-linecap="round" stroke-width="15"></circle>
+<!-- Operations 18% (Violet) -->
+<circle cx="70" cy="70" fill="transparent" r="54" stroke="#a855f7" stroke-dasharray="61 340" stroke-dashoffset="-218" stroke-linecap="round" stroke-width="15"></circle>
+<!-- Lifestyle 14% (Emerald) -->
+<circle cx="70" cy="70" fill="transparent" r="54" stroke="#10b981" stroke-dasharray="47 340" stroke-dashoffset="-285" stroke-linecap="round" stroke-width="15"></circle>
+</svg>
+<div class="absolute flex flex-col items-center justify-center text-center p-4 rounded-full clay-card-subtle w-28 h-28">
+<span class="font-mono text-[10px] uppercase text-slate-500 font-semibold">Top Allocation</span>
+<span class="font-mono text-2xl font-extrabold text-slate-900 leading-tight">32.0%</span>
+<span class="text-[11px] font-bold text-sky-700">Housing / Infra</span>
+</div>
+</div>
+<!-- Legend & Confidence Indicator -->
+<div class="relative z-10 space-y-2.5">
+<div class="grid grid-cols-2 gap-2">
+<div class="flex items-center justify-between p-2.5 rounded-xl clay-card-inset">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-sky-500 shadow-sm"></span>
+<span class="text-xs font-semibold text-slate-700">Housing</span>
+</div>
+<span class="font-mono text-xs font-bold text-slate-900">32%</span>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-xl clay-card-inset">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-indigo-500 shadow-sm"></span>
+<span class="text-xs font-semibold text-slate-700">Capital</span>
+</div>
+<span class="font-mono text-xs font-bold text-slate-900">28%</span>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-xl clay-card-inset">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-purple-500 shadow-sm"></span>
+<span class="text-xs font-semibold text-slate-700">Operations</span>
+</div>
+<span class="font-mono text-xs font-bold text-slate-900">18%</span>
+</div>
+<div class="flex items-center justify-between p-2.5 rounded-xl clay-card-inset">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-emerald-500 shadow-sm"></span>
+<span class="text-xs font-semibold text-slate-700">Lifestyle</span>
+</div>
+<span class="font-mono text-xs font-bold text-slate-900">14%</span>
+</div>
+</div>
+<div class="p-3 rounded-xl clay-card-inset flex items-center justify-between">
+<span class="text-xs font-medium text-slate-600">Model Precision:</span>
+<span class="font-mono text-xs font-bold text-sky-800 bg-sky-100/90 border border-sky-200/60 px-2.5 py-0.5 rounded-full shadow-inner">98.7% Accuracy</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Real-Time Ledger & Goal Acceleration Zone -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-7">
+<!-- Live Transaction Telemetry Stream (7 cols) -->
+<div class="lg:col-span-7 rounded-3xl clay-card p-7 shadow-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-4 border-b border-slate-200/70">
+<div>
+<div class="flex items-center gap-2.5">
+<h2 class="text-xl font-bold text-slate-900 tracking-tight">Live Transactions Stream</h2>
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+</span>
+</div>
+<p class="text-xs font-medium text-slate-500">Direct SQLAlchemy transaction ledger with automated ML classifier tags</p>
+</div>
+<button class="font-mono text-xs font-bold text-sky-700 hover:text-sky-900 transition-colors flex items-center gap-1 clay-pill-btn px-3 py-1.5 rounded-full cursor-pointer">
+<span>Query Log</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+<!-- Ledger Entries Table/List as soft clay rows -->
+<div class="space-y-3 mt-4" id="ledger-stream">
+<!-- Item 1: SaaS Inflow -->
+<div class="flex items-center justify-between p-3.5 rounded-2xl clay-card-subtle hover:bg-white transition-all cursor-pointer">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-2xl bg-emerald-100/80 border border-emerald-200/60 flex items-center justify-center text-emerald-700 shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-slate-900">Stripe Terminal / Enterprise SaaS</span>
+<span class="font-mono text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 rounded shadow-inner">Cleared</span>
+</div>
+<span class="text-xs text-slate-500 font-medium">Oct 26, 18:24 • Merchant ID: STR-9821</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-mono text-sm font-extrabold text-emerald-600">+$4,250.00</span>
+<div class="font-mono text-[10px] text-slate-400 font-medium">Revenue Stream</div>
+</div>
+</div>
+<!-- Item 2: AWS Compute -->
+<div class="flex items-center justify-between p-3.5 rounded-2xl clay-card-subtle hover:bg-white transition-all cursor-pointer">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-2xl bg-sky-100/80 border border-sky-200/60 flex items-center justify-center text-sky-700 shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[22px]">dns</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-slate-900">AWS Cloud Compute Engine</span>
+<span class="font-mono text-[10px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200/60 px-2 py-0.5 rounded shadow-inner">ML Tag: Infra</span>
+</div>
+<span class="text-xs text-slate-500 font-medium">Oct 26, 14:10 • Oregon US-West-2</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-mono text-sm font-extrabold text-slate-900">-$412.30</span>
+<div class="font-mono text-[10px] text-slate-400 font-medium">Auto-Debit</div>
+</div>
+</div>
+<!-- Item 3: Hardware -->
+<div class="flex items-center justify-between p-3.5 rounded-2xl clay-card-subtle hover:bg-white transition-all cursor-pointer">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-2xl bg-slate-100 border border-slate-200/80 flex items-center justify-center text-slate-700 shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[22px]">laptop_mac</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-slate-900">Apple Store Fifth Ave</span>
+<span class="font-mono text-[10px] font-bold text-sky-700 bg-sky-50 border border-sky-200/60 px-2 py-0.5 rounded shadow-inner">Asset CapEx</span>
+</div>
+<span class="text-xs text-slate-500 font-medium">Oct 25, 11:32 • Terminal #4029</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-mono text-sm font-extrabold text-slate-900">-$1,299.00</span>
+<div class="font-mono text-[10px] text-slate-400 font-medium">Apple Pay</div>
+</div>
+</div>
+<!-- Item 4: Angel Dividend -->
+<div class="flex items-center justify-between p-3.5 rounded-2xl clay-card-subtle hover:bg-white transition-all cursor-pointer">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-2xl bg-amber-100/80 border border-amber-200/60 flex items-center justify-center text-amber-700 shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-[22px]">workspace_premium</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-slate-900">Angel Syndicate Yield Distribution</span>
+<span class="font-mono text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 rounded shadow-inner">Equity</span>
+</div>
+<span class="text-xs text-slate-500 font-medium">Oct 24, 09:15 • Direct Fedwire</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-mono text-sm font-extrabold text-emerald-600">+$12,500.00</span>
+<div class="font-mono text-[10px] text-slate-400 font-medium">Settled Wire</div>
+</div>
+</div>
+<!-- Item 5: Anomaly Intercepted (Fraud Engine) -->
+<div class="flex items-center justify-between p-3.5 rounded-2xl bg-rose-50/70 border border-rose-200/80 hover:bg-rose-50 transition-all shadow-inner">
+<div class="flex items-center gap-3.5">
+<div class="w-11 h-11 rounded-2xl bg-rose-100 border border-rose-200 flex items-center justify-center text-rose-600 shrink-0 animate-pulse">
+<span class="material-symbols-outlined text-[22px]">gshield</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold text-slate-900">Suspicious Geo-IP Transfer</span>
+<span class="font-mono text-[10px] text-rose-700 bg-rose-100 border border-rose-200 px-2 py-0.5 rounded font-extrabold">Fraud Core Hold</span>
+</div>
+<span class="text-xs text-slate-500 font-medium">Intercepted by ML fraud.py • Nonce mismatch</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-mono text-sm font-extrabold text-rose-600">-$2,400.00</span>
+<div class="flex items-center justify-end gap-1 mt-0.5">
+<button class="font-mono text-[11px] font-bold text-slate-900 hover:text-rose-600 underline cursor-pointer">Review</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-2 flex items-center justify-between text-slate-500 text-xs border-t border-slate-200/70 font-medium">
+<span>Displaying 5 of 3,842 ledger entities</span>
+<span class="font-mono">Latency: 12ms (Postgres RDS read-replica)</span>
+</div>
+</div>
+<!-- Smart Budgets & Goal Accelerators (5 cols) -->
+<div class="lg:col-span-5 rounded-3xl clay-card p-7 shadow-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-4 border-b border-slate-200/70">
+<div>
+<h2 class="text-xl font-bold text-slate-900 tracking-tight">Smart Budgets &amp; Goals</h2>
+<p class="text-xs font-medium text-slate-500">Target capital velocity and automated reserve sweeps</p>
+</div>
+<button class="w-9 h-9 rounded-full clay-pill-btn flex items-center justify-center text-slate-700 hover:text-slate-900 cursor-pointer" title="Add New Goal">
+<span class="material-symbols-outlined text-[19px]">add</span>
+</button>
+</div>
+<div class="space-y-4 mt-4">
+<!-- Goal 1: Nordic Expansion -->
+<div class="p-4 rounded-2xl clay-card-subtle space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sky-600 text-[20px]">rocket_launch</span>
+<span class="text-sm font-bold text-slate-900">Nordic Expansion Fund</span>
+</div>
+<span class="font-mono text-[10.5px] font-bold text-sky-800 bg-sky-100/90 border border-sky-200/70 px-2.5 py-0.5 rounded-full shadow-inner">80% Achieved</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono text-xl font-extrabold text-slate-900">$48,500.00</span>
+<span class="text-xs font-medium text-slate-500">Target: $60,000.00</span>
+</div>
+<!-- Thick Pill Clay Progress Bar -->
+<div class="w-full h-3 bg-slate-200/80 rounded-full overflow-hidden p-0.5 shadow-inner">
+<div class="h-full bg-gradient-to-r from-sky-400 to-sky-600 rounded-full shadow-[0_2px_8px_rgba(2,132,199,0.35)]" style="width: 80%;"></div>
+</div>
+<div class="flex justify-between items-center text-slate-500 text-[11px] font-medium">
+<span>Est. completion: Nov 14, 2025</span>
+<span class="font-mono font-bold text-sky-700">+$1,200/wk velocity</span>
+</div>
+</div>
+<!-- Goal 2: Tax Reserve -->
+<div class="p-4 rounded-2xl clay-card-subtle space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-[20px]">verified</span>
+<span class="text-sm font-bold text-slate-900">Tax Liquidity Reserve</span>
+</div>
+<span class="font-mono text-[10.5px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full shadow-inner">100% Completed</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono text-xl font-extrabold text-slate-900">$30,000.00</span>
+<span class="text-xs font-medium text-slate-500">Target: $30,000.00</span>
+</div>
+<!-- Thick Pill Clay Progress Bar -->
+<div class="w-full h-3 bg-slate-200/80 rounded-full overflow-hidden p-0.5 shadow-inner">
+<div class="h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full shadow-[0_2px_8px_rgba(16,185,129,0.35)]" style="width: 100%;"></div>
+</div>
+<div class="flex justify-between items-center text-slate-500 text-[11px] font-medium">
+<span>Locked in high-yield vault</span>
+<span class="font-mono font-bold text-emerald-700">Fully Funded</span>
+</div>
+</div>
+<!-- Goal 3: Q3 R&D Reserve -->
+<div class="p-4 rounded-2xl clay-card-subtle space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-indigo-600 text-[20px]">biotech</span>
+<span class="text-sm font-bold text-slate-900">Q3 R&amp;D Reserve</span>
+</div>
+<span class="font-mono text-[10.5px] font-bold text-indigo-700 bg-indigo-50 border border-indigo-200/70 px-2.5 py-0.5 rounded-full shadow-inner">56% Funded</span>
+</div>
+<div class="flex items-baseline justify-between">
+<span class="font-mono text-xl font-extrabold text-slate-900">$14,200.00</span>
+<span class="text-xs font-medium text-slate-500">Target: $25,000.00</span>
+</div>
+<!-- Thick Pill Clay Progress Bar -->
+<div class="w-full h-3 bg-slate-200/80 rounded-full overflow-hidden p-0.5 shadow-inner">
+<div class="h-full bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full shadow-[0_2px_8px_rgba(99,102,241,0.35)]" style="width: 56%;"></div>
+</div>
+<div class="flex justify-between items-center text-slate-500 text-[11px] font-medium">
+<span>Next sweep in 3 business days</span>
+<span class="font-mono font-bold text-indigo-700">+$850/wk</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-2">
+<button class="w-full h-11 rounded-2xl clay-pill-btn text-slate-800 font-bold text-xs flex items-center justify-center gap-2 hover:text-slate-950 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-[17px] text-slate-600">tune</span>
+<span>Configure Automated Goal Rules</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Interactive Action Command Bar (Light Frosted Clay Dock) -->
+<section class="rounded-3xl clay-card p-4 sm:p-5 shadow-lg flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-2.5 flex-wrap">
+<span class="font-mono text-[11px] uppercase font-bold text-slate-500 tracking-wider px-2">Quick Commands:</span>
+<button class="h-10 px-4 rounded-full clay-pill-btn text-slate-800 font-bold text-xs transition-all flex items-center gap-2 cursor-pointer" id="cmd-transfer">
+<span class="material-symbols-outlined text-[18px] text-sky-600">send</span>
+<span>Instant Transfer (Stored Proc)</span>
+</button>
+<button class="h-10 px-4 rounded-full clay-pill-btn text-slate-800 font-bold text-xs transition-all flex items-center gap-2 cursor-pointer" id="cmd-export">
+<span class="material-symbols-outlined text-[18px] text-indigo-600">download</span>
+<span>Export Tax CSV / Schema</span>
+</button>
+<button class="h-10 px-4 rounded-full clay-pill-btn text-slate-800 font-bold text-xs transition-all flex items-center gap-2 cursor-pointer" id="cmd-simulate">
+<span class="material-symbols-outlined text-[18px] text-amber-600">rebase</span>
+<span>Simulate Market Shock</span>
+</button>
+<button class="h-10 px-4 rounded-full clay-pill-btn text-slate-800 font-bold text-xs transition-all flex items-center gap-2 cursor-pointer" id="cmd-retrain">
+<span class="material-symbols-outlined text-[18px] text-purple-600">model_training</span>
+<span>Re-train ML Classifier</span>
+</button>
+</div>
+<!-- Active Telemetry Status -->
+<div class="flex items-center gap-2 text-slate-600 font-mono text-xs px-2 font-semibold">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
+<span>WebSocket Synced</span>
+</div>
+</section>
+<!-- Notification Toast Node (Clay Glass Pill) -->
+<div class="fixed bottom-8 right-8 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none rounded-2xl clay-card p-4 shadow-2xl flex items-center gap-3 border border-white" id="toast-pill">
+<div class="w-9 h-9 rounded-xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-700 shadow-inner" id="toast-icon-bg">
+<span class="material-symbols-outlined text-[18px]" id="toast-icon">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-900" id="toast-title">Command Triggered</span>
+<span class="text-[11px] font-medium text-slate-500" id="toast-desc">Transaction committed to ledger.</span>
+</div>
+</div>
+</div>
+<script>
+    // Interactive UI State Handler
+    (function() {
+      const toast = document.getElementById('toast-pill');
+      const toastTitle = document.getElementById('toast-title');
+      const toastDesc = document.getElementById('toast-desc');
+      let toastTimeout = null;
+
+      function showNotification(title, desc) {
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toastTitle.textContent = title;
+        toastDesc.textContent = desc;
+        toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        
+        toastTimeout = setTimeout(() => {
+          toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+        }, 3400);
+      }
+
+      // Timeline Filter Switchers
+      const timelineButtons = document.querySelectorAll('#timeline-filters button');
+      timelineButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          timelineButtons.forEach(b => {
+            b.className = 'px-3 py-1 rounded-full font-mono text-[11px] font-semibold text-slate-600 hover:text-slate-900 transition-all';
+          });
+          btn.className = 'px-3 py-1 rounded-full font-mono text-[11px] font-bold clay-pill-btn text-sky-900 shadow-sm';
+          showNotification('Waveform Timeline Shifted', `Active range recalculated for: ${btn.getAttribute('data-range')}`);
+        });
+      });
+
+      // Quick Command Triggers
+      const transferBtn = document.getElementById('cmd-transfer');
+      if (transferBtn) {
+        transferBtn.addEventListener('click', () => {
+          showNotification('Instant Transfer Stored Proc', 'Invoking Postgres ledger balance mutation...');
+        });
+      }
+
+      const exportBtn = document.getElementById('cmd-export');
+      if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+          showNotification('Pydantic Schema Generated', 'FinSight_Ledger_Q3_2025.csv compilation complete.');
+        });
+      }
+
+      const simBtn = document.getElementById('cmd-simulate');
+      if (simBtn) {
+        simBtn.addEventListener('click', () => {
+          showNotification('Macro Shock Simulation', 'Projecting -15% volatility scenario across portfolio pods.');
+        });
+      }
+
+      const retrainBtn = document.getElementById('cmd-retrain');
+      if (retrainBtn) {
+        retrainBtn.addEventListener('click', () => {
+          showNotification('ML Classifier Retrain', 'Training pipeline queued: model/categorize.py (14,200 iterations)');
+        });
+      }
+
+      const toggleSim = document.getElementById('toggle-sim-mode');
+      if (toggleSim) {
+        let isLive = true;
+        toggleSim.addEventListener('click', () => {
+          isLive = !isLive;
+          toggleSim.innerHTML = isLive 
+            ? '<span class="material-symbols-outlined text-[18px]">bolt</span><span>Live Feed</span>'
+            : '<span class="material-symbols-outlined text-[18px]">pause</span><span>Paused</span>';
+          showNotification(isLive ? 'Telemetry Active' : 'Feed Paused', isLive ? 'Streaming live order flows.' : 'Telemetry hold engaged.');
+        });
+      }
+    })();
+  </script>
+</main>
+<!-- Light Clay Footer -->
+<footer class="w-full relative z-10 bg-white/60 backdrop-blur-xl border-t border-slate-200/80 mt-10">
+<div class="w-full px-6 lg:px-12 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="font-extrabold text-base text-slate-900 tracking-tight">FinSight</span>
+<span class="text-xs font-medium text-slate-500">| Institutional Quantitative Intelligence</span>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-xs font-medium text-slate-600">Real-time Telemetry: <strong class="font-mono text-slate-800">14ms</strong></span>
+<span class="text-xs font-medium text-slate-600">Encryption: <strong class="font-mono text-slate-800">AES-GCM-256</strong></span>
+</div>
+<div class="text-xs text-slate-400 font-medium">© 2025 FinSight Financial Technologies. All rights reserved.</div>
+</div>
+</footer>
+</body></html>
