@@ -8,7 +8,7 @@ FinSight is a smart personal finance management platform that helps users:
 - Track income and expenses with automatic categorization
 - Set and monitor budgets with real-time breach prediction
 - Build savings goals with auto-sweep features
-- Receive AI-driven financial insights
+- Receive financial insights
 - Detect and flag suspicious transactions
 
 **Target Users:** College students, young professionals, and anyone seeking better financial organization.
