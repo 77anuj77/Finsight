@@ -312,7 +312,7 @@ This is an academic project for the DCDS Lab ESE initiative. Follow PEP 8 for Py
 
 Academic use only. Contact: [Your Institution]
 
----
+-----
 
 **Project Status:** Infrastructure scaffolding complete (43/43 files created). Ready for feature implementation and testing.
 
